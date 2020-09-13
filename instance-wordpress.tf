@@ -6,7 +6,7 @@ resource "aws_instance" "wordpress-a" {
   subnet_id                   = aws_subnet.app-subnet-a.id
   associate_public_ip_address = true
   tags = {
-    Name = "EC2 Instance"
+    Name = "terraform-EC2 Instance"
   }
 }
 
@@ -18,6 +18,6 @@ resource "aws_instance" "wordpress-b" {
   subnet_id                   = aws_subnet.app-subnet-b.id
   associate_public_ip_address = true
   tags = {
-    Name = "EC2 Instance"
+    Name = "terraform-EC2 Instance"
   }
 }

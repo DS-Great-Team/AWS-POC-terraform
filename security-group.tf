@@ -1,10 +1,10 @@
 resource aws_security_group "db" {
-  name        = var.stack-RDS-SG
+  name        = terraform-RDS-SG
   description = "managed by terrafrom for db PostgreSQL servers"
   vpc_id      = aws_vpc.vpc.id
 
   tags = {
-    Name = var.stack-RDS-SG
+    Name = terraform-RDS-SG
   }
 
   ingress {
@@ -23,12 +23,12 @@ resource aws_security_group "db" {
 }
 
 resource aws_security_group "wordpress" {
-  name        = var.stack-wordpress-SG
+  name        = terraform-wordpress-SG
   description = "wordpress sg"
   vpc_id      = aws_vpc.vpc.id
 
   tags = {
-    Name = var.stack-wordpress-SG
+    Name = terraform-wordpress-SG
   }
 
   ingress {

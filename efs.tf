@@ -3,7 +3,7 @@ resource "aws_efs_file_system" "efs-poc" {
   performance_mode = "generalPurpose"
   encrypted        = "true"
   tags = {
-    Name = "efs-poc"
+    Name = "terraform-efs-poc"
   }
 }
 

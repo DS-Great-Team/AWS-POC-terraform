@@ -4,11 +4,6 @@ variable aws_reg {
   type        = string
 }
 
-variable stack {
-  description = "this is name for tags"
-  default     = "terraform"
-}
-
 variable ssh_key {
   default     = "~/.ssh/id_rsa.pub"
   description = "Default pub key"
