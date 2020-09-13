@@ -1,16 +1,16 @@
 resource "aws_route53_zone" "poc_zone" {
-  name = "poc.com"
+  name   = "poc.com"
+  vpc_id = "${aws_vpc.vpc.id}"
 }
 
-resource "aws_route53_record" "poc-policy" {
-  name    = "sample.poc.com"
-  type    = "CNAME"
-  zone_id = aws_route53_zone.poc_zone.zone_id
+resource "aws_route53_record" "alb_alias" {
+  zone_id = "${aws_route53_zone.poc_zone.zone_id}"
   ttl     = "300"
-  latency_routing_policy {
-    region = "us-east-1"
+  name    = "elb-alias"
+  type    = "A"
+
+  alias {
+    name    = "${aws_lb.alb-poc.dns_name}"
+    zone_id = "${aws_lb.alb-poc.zone_id}"
   }
-  set_identifier  = "random-ip"
-  records         = ["8.8.8.8"]
-  health_check_id = "aaaaaaaa-aaaa-aaaa-aaaa-64c5b689041a"
 }
