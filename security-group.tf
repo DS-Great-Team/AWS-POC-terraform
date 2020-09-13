@@ -4,7 +4,7 @@ resource aws_security_group "db" {
   vpc_id      = aws_vpc.vpc.id
 
   tags = {
-    Name = terraform-RDS-SG
+    Name = "terraform-RDS-SG"
   }
 
   ingress {
@@ -28,7 +28,7 @@ resource aws_security_group "wordpress" {
   vpc_id      = aws_vpc.vpc.id
 
   tags = {
-    Name = terraform-wordpress-SG
+    Name = "terraform-wordpress-SG"
   }
 
   ingress {
