@@ -6,7 +6,6 @@ resource "aws_key_pair" "pockey" {
 resource "aws_db_instance" "master" {
   allocated_storage       = 10
   availability_zone       = data.aws_availability_zones.azs.names[0]
-  multi_az                = true
   backup_retention_period = 1
   db_subnet_group_name    = "${aws_db_subnet_group.subnet-group.id}"
   engine                  = "postgres"
