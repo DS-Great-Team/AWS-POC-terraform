@@ -108,7 +108,7 @@ resource "aws_route_table" "app-subnet-b" {
 
 resource "aws_route_table_association" "public-subnet-a" {
   route_table_id = aws_route_table.public-subnet-a.id
-  subnet_id = aws_subnet.public-subnet-a.id
+  subnet_id      = aws_subnet.public-subnet-a.id
 }
 
 resource "aws_route_table_association" "public-subnet-b" {
@@ -118,7 +118,7 @@ resource "aws_route_table_association" "public-subnet-b" {
 
 resource "aws_route_table_association" "app-subnet-a" {
   route_table_id = aws_route_table.app-subnet-a.id
-  subnet_id = aws_subnet.app-subnet-a.id
+  subnet_id      = aws_subnet.app-subnet-a.id
 }
 
 resource "aws_route_table_association" "app-subnet-b" {

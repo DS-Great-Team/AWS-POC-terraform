@@ -1,7 +1,7 @@
 resource "aws_lb" "alb-poc" {
-    name               = alb-poc
+    name               = "alb-poc"
     load_balancer_type = "application"
-    subnets            = aws_subnet_ids.public-subnet-a.ids
+    subnets            = [aws_subnet.public-subnet-a.id, aws_subnet.public-subnet-b.id]
     security_groups    = [aws_security_group.alb.id]
 }
 
@@ -22,13 +22,11 @@ resource "aws_lb_listener" "http" {
 }
  
 resource "aws_lb_target_group" "tg-poc" {
- 
-  name = tg-poc
- 
+  name = "tg-poc"
   port     = 80
   protocol = "HTTP"
   vpc_id   = aws_vpc.vpc.id
- 
+
   health_check {
     path                = "/"
     protocol            = "HTTP"
@@ -44,11 +42,12 @@ resource "aws_lb_listener_rule" "lr-poc" {
   listener_arn = aws_lb_listener.http.arn
   priority     = 100
  
-  condition {
-    field  = "path-pattern"
-    values = ["*"]
+     condition {
+    path_pattern {
+      values = ["*"]
+    }
   }
- 
+
   action {
     type             = "forward"
     target_group_arn = aws_lb_target_group.tg-poc.arn
