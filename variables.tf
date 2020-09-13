@@ -18,9 +18,3 @@ variable ssh_priv_key {
   default     = "~/.ssh/id_rsa"
   description = "Default pub key"
 }
-
-variable "engine_version" {
-  default     = "11.5"
-  type        = string
-  description = "Database engine version"
-}
