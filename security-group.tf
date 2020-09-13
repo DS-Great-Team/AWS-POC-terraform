@@ -24,7 +24,7 @@ resource aws_security_group "db" {
 
 resource aws_security_group "wordpress" {
   name        = "terraform-wordpress-SG"
-  description = "wordpress sg"
+  description = "This is for terraforms wordpress web servers security group"
   vpc_id      = aws_vpc.vpc.id
 
   tags = {
