@@ -63,8 +63,8 @@ resource aws_security_group "wordpress" {
 
 resource "aws_security_group" "alb" {
 
-  name = "alb_security_poc"
-  vpc_id      = "${aws_vpc.vpc.id}"
+  name   = "alb_security_poc"
+  vpc_id = "${aws_vpc.vpc.id}"
 
   ingress {
     from_port   = 80
@@ -78,5 +78,27 @@ resource "aws_security_group" "alb" {
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+resource "aws_security_group" "efs" {
+
+  name   = "efs_security_poc"
+  vpc_id = "${aws_vpc.vpc.id}"
+
+  ingress {
+    from_port       = 2049
+    to_port         = 2049
+    protocol        = "tcp"
+    cidr_blocks     = ["0.0.0.0/0"]
+    security_groups = ["${aws_security_group.wordpress.id}"]
+  }
+
+  egress {
+    from_port       = 0
+    to_port         = 0
+    protocol        = "-1"
+    cidr_blocks     = ["0.0.0.0/0"]
+    security_groups = ["${aws_security_group.wordpress.id}"]
   }
 }
