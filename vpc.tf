@@ -189,3 +189,11 @@ resource "aws_subnet" "data-subnet-b" {
   }
 }
 
+resource "aws_db_subnet_group" "subnet-group" {
+  name       = "main"
+  subnet_ids = [aws_subnet.data-subnet-a.id, aws_subnet.data-subnet-b.id]
+
+  tags = {
+    Name = "subnet-group"
+  }
+}

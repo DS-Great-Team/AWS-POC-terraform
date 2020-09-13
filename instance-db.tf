@@ -3,40 +3,21 @@ resource "aws_key_pair" "pockey" {
   public_key = file(var.ssh_key)
 }
 
-resource "aws_db_instance" "database-a" {
-  allocated_storage        = 1
+resource "aws_db_instance" "database" {
+  allocated_storage        = 10
   backup_retention_period  = 7
-  db_subnet_group_name     = "${aws_subnet.data-subnet-a.id}"
+  db_subnet_group_name     = aws_db_subnet_group.subnet-group.id
   engine                   = "postgres"
-  engine_version           = "9.5.4"
-  identifier               = "database-a"
+  engine_version           = "9.6.9"
+  identifier               = "database"
   instance_class           = "db.t3.micro"
-  multi_az                 = false
-  name                     = "database-a"
-  password                 = "admin"
+  multi_az                 = true
+  name                     = "databasepg"
+  password                 = "nicole123"
   port                     = 5432
   publicly_accessible      = false
   storage_encrypted        = true
   storage_type             = "gp2"
-  username                 = "admin"
-  vpc_security_group_ids   = ["${aws_security_group.db.id}"]
-}
-
-resource "aws_db_instance" "database-b" {
-  allocated_storage        = 1
-  backup_retention_period  = 7
-  db_subnet_group_name     = "${aws_subnet.data-subnet-b.id}"
-  engine                   = "postgres"
-  engine_version           = "9.5.4"
-  identifier               = "database-b"
-  instance_class           = "db.t3.micro"
-  multi_az                 = false
-  name                     = "database-b"
-  password                 = "admin"
-  port                     = 5432
-  publicly_accessible      = false
-  storage_encrypted        = true
-  storage_type             = "gp2"
-  username                 = "admin"
+  username                 = "nicole"
   vpc_security_group_ids   = ["${aws_security_group.db.id}"]
 }
