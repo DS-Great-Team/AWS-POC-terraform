@@ -54,3 +54,15 @@ resource "aws_lb_listener_rule" "lr-poc" {
     target_group_arn = aws_lb_target_group.tg-poc.arn
   }
 }
+
+resource "aws_lb_target_group_attachment" "lb-wordpress-a" {
+  target_group_arn = aws_lb_target_group.tg-poc.arn
+  target_id        = aws_instance.wordpress-a.id
+  port             = 80
+}
+
+resource "aws_lb_target_group_attachment" "lb-wordpress-b" {
+  target_group_arn = aws_lb_target_group.tg-poc.arn
+  target_id        = aws_instance.wordpress-b.id
+  port             = 80
+}
