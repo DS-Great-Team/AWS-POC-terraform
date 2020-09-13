@@ -1,5 +1,5 @@
 resource aws_security_group "db" {
-  name        = terraform-RDS-SG
+  name        = "terraform-RDS-SG"
   description = "managed by terrafrom for db PostgreSQL servers"
   vpc_id      = aws_vpc.vpc.id
 
@@ -23,7 +23,7 @@ resource aws_security_group "db" {
 }
 
 resource aws_security_group "wordpress" {
-  name        = terraform-wordpress-SG
+  name        = "terraform-wordpress-SG"
   description = "wordpress sg"
   vpc_id      = aws_vpc.vpc.id
 

@@ -1,5 +1,5 @@
 resource "aws_key_pair" "pockey" {
-  key_name   = terraform-pockey
+  key_name   = "terraform-pockey"
   public_key = file(var.ssh_key)
 }
 
