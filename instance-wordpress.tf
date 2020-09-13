@@ -1,5 +1,5 @@
 resource "aws_instance" "wordpress-a" {
-  ami                         = "ami-093d1520fd941a9b3"
+  ami                         = "ami-0d220197b94d1bbec"
   instance_type               = "t2.micro"
   key_name                    = aws_key_pair.pockey.key_name
   vpc_security_group_ids      = [aws_security_group.wordpress.id]
@@ -11,7 +11,7 @@ resource "aws_instance" "wordpress-a" {
 }
 
 resource "aws_instance" "wordpress-b" {
-  ami                         = "ami-093d1520fd941a9b3"
+  ami                         = "ami-0d220197b94d1bbec"
   instance_type               = "t2.micro"
   key_name                    = aws_key_pair.pockey.key_name
   vpc_security_group_ids      = [aws_security_group.wordpress.id]
