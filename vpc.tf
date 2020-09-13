@@ -6,7 +6,7 @@ resource "aws_vpc" "vpc" {
   cidr_block = "172.31.0.0/16"
 
   tags = {
-    Name = "${var.stack}-vpc"
+    Name = var.stack}-vpc"
   }
 }
 
@@ -14,7 +14,7 @@ resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.vpc.id
 
   tags = {
-    Name = "${var.stack}-igw"
+    Name = var.stack}-igw"
   }
 }
 
@@ -23,7 +23,7 @@ resource "aws_nat_gateway" "nat-subnet-a" {
   allocation_id = aws_eip.eip-a.id
 
   tags = {
-    Name = "${var.stack}-nat-subnet-a"
+    Name = var.stack}-nat-subnet-a"
   }
 }
 
@@ -32,7 +32,7 @@ resource "aws_nat_gateway" "nat-subnet-b" {
   allocation_id = aws_eip.eip-b.id
 
   tags = {
-    Name = "${var.stack}-nat-subnet-b"
+    Name = var.stack}-nat-subnet-b"
   }
 }
 
@@ -41,7 +41,7 @@ resource "aws_eip" "eip-a" {
   vpc = true
 
   tags = {
-    Name = "${var.stack}-nat-a-ip"
+    Name = var.stack}-nat-a-ip"
   }
 }
 
@@ -50,7 +50,7 @@ resource "aws_eip" "eip-b" {
   vpc = true
 
   tags = {
-    Name = "${var.stack}-nat-b-ip"
+    Name = var.stack}-nat-b-ip"
   }
 }
 
@@ -63,7 +63,7 @@ resource "aws_route_table" "public-subnet-a" {
   }
 
   tags = {
-    Name = "${var.stack}-public-subnet-a"
+    Name = var.stack}-public-subnet-a"
   }
 }
 
@@ -76,7 +76,7 @@ resource "aws_route_table" "public-subnet-b" {
   }
 
   tags = {
-    Name = "${var.stack}-public-subnet-b"
+    Name = var.stack}-public-subnet-b"
   }
 }
 
@@ -89,7 +89,7 @@ resource "aws_route_table" "app-subnet-a" {
   }
 
   tags = {
-    Name = "${var.stack}-app-subnet-a"
+    Name = var.stack}-app-subnet-a"
   }
 }
 
@@ -102,7 +102,7 @@ resource "aws_route_table" "app-subnet-b" {
   }
 
   tags = {
-    Name = "${var.stack}-app-subnet-b"
+    Name = var.stack}-app-subnet-b"
   }
 }
 
@@ -132,7 +132,7 @@ resource "aws_subnet" "public-subnet-a" {
   availability_zone = data.aws_availability_zones.azs.names[0]
 
   tags = {
-    Name = "${var.stack}-public-subnet-a"
+    Name = var.stack}-public-subnet-a"
   }
 }
 
@@ -143,7 +143,7 @@ resource "aws_subnet" "public-subnet-b" {
   availability_zone = data.aws_availability_zones.azs.names[1]
 
   tags = {
-    Name = "${var.stack}-public-subnet-b"
+    Name = var.stack}-public-subnet-b"
   }
 }
 
@@ -154,7 +154,7 @@ resource "aws_subnet" "app-subnet-a" {
   availability_zone = data.aws_availability_zones.azs.names[0]
 
   tags = {
-    Name = "${var.stack}-app-subnet-a"
+    Name = var.stack}-app-subnet-a"
   }
 }
 
@@ -165,7 +165,7 @@ resource "aws_subnet" "app-subnet-b" {
   availability_zone = data.aws_availability_zones.azs.names[1]
 
   tags = {
-    Name = "${var.stack}-app-subnet-b"
+    Name = var.stack}-app-subnet-b"
   }
 }
 
@@ -175,7 +175,7 @@ resource "aws_subnet" "data-subnet-a" {
   availability_zone = data.aws_availability_zones.azs.names[0]
 
   tags = {
-    Name = "${var.stack}-data-subnet-a"
+    Name = var.stack}-data-subnet-a"
   }
 }
 
@@ -185,7 +185,7 @@ resource "aws_subnet" "data-subnet-b" {
   availability_zone = data.aws_availability_zones.azs.names[1]
 
   tags = {
-    Name = "${var.stack}-data-subnet-b"
+    Name = var.stack}-data-subnet-b"
   }
 }
 

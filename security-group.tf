@@ -1,17 +1,17 @@
 resource aws_security_group "db" {
-  name        = "${var.stack}-RDS-SG"
+  name        = var.stack}-RDS-SG"
   description = "managed by terrafrom for db PostgreSQL servers"
   vpc_id      = aws_vpc.vpc.id
 
   tags = {
-    Name = "${var.stack}-RDS-SG"
+    Name = var.stack}-RDS-SG"
   }
 
   ingress {
     protocol        = "tcp"
     from_port       = 5432
     to_port         = 5432
-    security_groups = ["${aws_security_group.wordpress.id}"]
+    security_groups = [aws_security_group.wordpress.id]
   }
 
   egress {
@@ -23,12 +23,12 @@ resource aws_security_group "db" {
 }
 
 resource aws_security_group "wordpress" {
-  name        = "${var.stack}-wordpress-SG"
+  name        = var.stack}-wordpress-SG"
   description = "This is for ${var.stack}s wordpress web servers security group"
-  vpc_id      = "${aws_vpc.vpc.id}"
+  vpc_id      = aws_vpc.vpc.id
 
   tags = {
-    Name = "${var.stack}-wordpress-SG"
+    Name = var.stack}-wordpress-SG"
   }
 
   ingress {
@@ -36,7 +36,7 @@ resource aws_security_group "wordpress" {
     from_port       = 22
     to_port         = 22
     cidr_blocks     = ["0.0.0.0/0"]
-    security_groups = ["${aws_security_group.alb.id}"]
+    security_groups = [aws_security_group.alb.id]
   }
 
   ingress {
@@ -64,7 +64,7 @@ resource aws_security_group "wordpress" {
 resource "aws_security_group" "alb" {
 
   name   = "alb_security_poc"
-  vpc_id = "${aws_vpc.vpc.id}"
+  vpc_id = aws_vpc.vpc.id
 
   ingress {
     from_port   = 80
@@ -84,14 +84,14 @@ resource "aws_security_group" "alb" {
 resource "aws_security_group" "efs" {
 
   name   = "efs_security_poc"
-  vpc_id = "${aws_vpc.vpc.id}"
+  vpc_id = aws_vpc.vpc.id
 
   ingress {
     from_port       = 2049
     to_port         = 2049
     protocol        = "tcp"
     cidr_blocks     = ["0.0.0.0/0"]
-    security_groups = ["${aws_security_group.wordpress.id}"]
+    security_groups = [aws_security_group.wordpress.id]
   }
 
   egress {
@@ -99,6 +99,6 @@ resource "aws_security_group" "efs" {
     to_port         = 0
     protocol        = "-1"
     cidr_blocks     = ["0.0.0.0/0"]
-    security_groups = ["${aws_security_group.wordpress.id}"]
+    security_groups = [aws_security_group.wordpress.id]
   }
 }
