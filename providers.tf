@@ -1,8 +1,8 @@
 provider "aws" {
   region     = var.aws_reg
   profile    = "terraform"
-  access_key = "AKIAW4LWZKVENOCQOQAA"
-  secret_key = "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"
+  access_key = "AKIASLJURDYE2KD7EGUJ"
+  secret_key = "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"
 }
 
 
