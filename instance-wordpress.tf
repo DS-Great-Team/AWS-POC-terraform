@@ -8,6 +8,7 @@ resource "aws_instance" "wordpress-a" {
   tags = {
     Name = "EC2 Instance"
   }
+}
 
   resource "aws_instance" "wordpress-b" {
   ami           = "ami-0c94855ba95c71c99"
@@ -19,3 +20,4 @@ resource "aws_instance" "wordpress-a" {
   tags = {
     Name = "EC2 Instance"
   }
+}
