@@ -1,9 +1,9 @@
-#########################################################
-# DO Community Playbooks: Wordpress on Ubuntu 18.04 LAMP
-#########################################################
+
 ---
 - hosts: all
-  become: true
+  remote_user: ubuntu
+  become: yes
+  become_method: sudo  
   vars_files:
     - vars/default.yml
 
@@ -14,7 +14,7 @@
 
     - name: Install LAP Packages
       apt: name={{ item }} update_cache=yes state=latest
-      loop: [ 'apache2', 'python3-pymysql', 'php', 'libapache2-mod-php' ]
+      loop: [ 'apache2', 'php', 'php-pgsql', 'libapache2-mod-php', 'python3-psycopg2', 'postgresql-client-common', 'libpq5', 'postgresql-client', 'postgresql-contrib' ]
       tags: [ system ]
 
     - name: Install PHP Extensions
@@ -53,25 +53,6 @@
       shell: /usr/sbin/a2dissite 000-default.conf
       notify: Restart Apache
       tags: [ apache ]
-
-
-    - name: Creates database for WordPress
-      postgres_db:
-        name: "{{ postgres_db }}"
-        state: present
-        login_user: nicole
-        login_password: "{{ postgres_root_password }}"
-      tags: [ postgres ]
-
-    - name: Create Postgres user for WordPress
-      postgres_user:
-        name: "{{ postgres_user }}"
-        password: "{{ postgres_password }}"
-        priv: "{{ postgres_db }}.*:ALL"
-        state: present
-        login_user: nicole
-        login_password: "{{ postgres_root_password }}"
-      tags: [ postgres ]
 
   # UFW Configuration
     - name: "UFW - Allow HTTP on port {{ http_port }}"
