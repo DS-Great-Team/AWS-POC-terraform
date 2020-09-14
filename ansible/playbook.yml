@@ -12,9 +12,9 @@
       apt: name=aptitude update_cache=yes state=latest force_apt_get=yes
       tags: [ system ]
 
-    - name: Install LAMP Packages
+    - name: Install LAP Packages
       apt: name={{ item }} update_cache=yes state=latest
-      loop: [ 'apache2', 'mysql-server', 'python3-pymysql', 'php', 'php-mysql', 'libapache2-mod-php' ]
+      loop: [ 'apache2', 'python3-pymysql', 'php', 'libapache2-mod-php' ]
       tags: [ system ]
 
     - name: Install PHP Extensions
@@ -54,48 +54,24 @@
       notify: Restart Apache
       tags: [ apache ]
 
-  # MySQL Configuration
-    - name: Set the root password
-      mysql_user:
-        name: root
-        password: "{{ mysql_root_password }}"
-        login_unix_socket: /var/run/mysqld/mysqld.sock
-      tags: [ mysql, mysql-root ]
-
-    - name: Remove all anonymous user accounts
-      mysql_user:
-        name: ''
-        host_all: yes
-        state: absent
-        login_user: root
-        login_password: "{{ mysql_root_password }}"
-      tags: [ mysql ]
-
-    - name: Remove the MySQL test database
-      mysql_db:
-        name: test
-        state: absent
-        login_user: root
-        login_password: "{{ mysql_root_password }}"
-      tags: [ mysql ]
 
     - name: Creates database for WordPress
-      mysql_db:
-        name: "{{ mysql_db }}"
+      postgres_db:
+        name: "{{ postgres_db }}"
         state: present
-        login_user: root
-        login_password: "{{ mysql_root_password }}"
-      tags: [ mysql ]
+        login_user: nicole
+        login_password: "{{ postgres_root_password }}"
+      tags: [ postgres ]
 
-    - name: Create MySQL user for WordPress
-      mysql_user:
-        name: "{{ mysql_user }}"
-        password: "{{ mysql_password }}"
-        priv: "{{ mysql_db }}.*:ALL"
+    - name: Create Postgres user for WordPress
+      postgres_user:
+        name: "{{ postgres_user }}"
+        password: "{{ postgres_password }}"
+        priv: "{{ postgres_db }}.*:ALL"
         state: present
-        login_user: root
-        login_password: "{{ mysql_root_password }}"
-      tags: [ mysql ]
+        login_user: nicole
+        login_password: "{{ postgres_root_password }}"
+      tags: [ postgres ]
 
   # UFW Configuration
     - name: "UFW - Allow HTTP on port {{ http_port }}"

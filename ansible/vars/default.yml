@@ -2,13 +2,14 @@
 #System Settings
 php_modules: [ 'php-curl', 'php-gd', 'php-mbstring', 'php-xml', 'php-xmlrpc', 'php-soap', 'php-intl', 'php-zip' ]
 
-#MySQL Settings
-mysql_root_password: "mysql_root_password"
-mysql_db: "wordpress"
-mysql_user: "sammy"
-mysql_password: "password"
+#postgres Settings
+postgres_root_password: "nicole123"
+postgres_db: "wordpress"
+postgres_user: "wordpress-user"
+postgres_password: "Wordpress123"
+postgres_host: "ENDPOINT"
 
 #HTTP Settings
-http_host: "your_domain"
-http_conf: "your_domain.conf"
+http_host: "BALANCER_DNS"
+http_conf: "poc.conf"
 http_port: "80"
